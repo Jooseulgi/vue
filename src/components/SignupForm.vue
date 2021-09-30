@@ -2,7 +2,16 @@
   <form @submit.prevent="submitForm">
     <div>
       <label for="username">id: </label>
-      <input id="username" type="text" v-model="username" />
+      <input
+        id="username"
+        type="text"
+        v-model="username"
+        :style="[
+          isUsernameValid
+            ? { border: '1px solid black' }
+            : { border: '1px solid red' },
+        ]"
+      />
     </div>
     <div>
       <label for="password">pw: </label>
@@ -12,13 +21,20 @@
       <label for="nickname">nickname: </label>
       <input id="nickname" type="text" v-model="nickname" />
     </div>
-    <button type="submit">회원가입</button>
+    <button
+      :disabled="!isUsernameValid || !password || !nickname"
+      type="submit"
+    >
+      회원가입
+    </button>
     <p>{{ logMessage }}</p>
   </form>
 </template>
 
 <script>
 import { registerUser } from '@/api/index';
+import { validateEmail } from '@/utils/validation';
+
 export default {
   data() {
     return {
@@ -27,6 +43,11 @@ export default {
       nickname: '',
       logMessage: '',
     };
+  },
+  computed: {
+    isUsernameValid() {
+      return validateEmail(this.username);
+    },
   },
   methods: {
     async submitForm() {
