@@ -21,15 +21,12 @@ export default new VueRouter({
       component: () => import('@/views/SignupPage.vue'),
     },
     {
-<<<<<<< HEAD
       path: '/main',
       component: () => import('@/views/MainPage.vue'),
     },
-    {
-=======
->>>>>>> 2_router
-      path: '*',
-      component: () => import('@/views/NotFoundPage.vue'),
-    },
+    // {
+    //   path: '*',
+    //   component: () => import('@/views/NotFoundPage.vue'),
+    // },
   ],
 });
