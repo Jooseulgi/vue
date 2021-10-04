@@ -24,9 +24,13 @@ export default new VueRouter({
       path: '/main',
       component: () => import('@/views/MainPage.vue'),
     },
-    // {
-    //   path: '*',
-    //   component: () => import('@/views/NotFoundPage.vue'),
-    // },
+    {
+      path: '*',
+      component: () => import('@/views/NotFoundPage.vue'),
+    },
+    {
+      path: '/add',
+      component: () => import('@/views/PostAddPage.vue'),
+    },
   ],
 });
